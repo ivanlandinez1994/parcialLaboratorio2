@@ -20,7 +20,7 @@ int publicacion_mostrarDebug(Publicacion* arrayPublicacion,int limite);
 int publicacion_mostrarPublicacionesClientes(Publicacion* arrayPublicacion,int limitePublicacion, int idCliente);
 
 int publicacion_alta(Publicacion* arrayPublicacion,int limitePublicacion, Cliente* arrayCliente, int limiteCliente);
-int publicacion_bajaPublicaciones(Publicacion* arrayPublicacion,int limite, int idCliente);
+int publicacion_bajaPublicaciones(Publicacion* arrayPublicacion,int limite);
 
 int publicacion_pausarPublicacion(Publicacion* arrayPublicacion,int limite, int idPublicacion);
 int publicacion_reanudarPublicacion(Publicacion* arrayPublicacion,int limite, int idPublicacion);

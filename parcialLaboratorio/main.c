@@ -6,7 +6,7 @@
 #include "publicacion.h"
 #include "utn.h"
 #include "informes.h"
-#define SIZECLIENTE 6
+#define SIZECLIENTE 8
 #define SIZEPUBLICACION 8
 
 int main()
@@ -52,7 +52,7 @@ int main()
                 getValidInt("ID Cliente a dar de baja?","\nNumero invalido\n",&auxiliarIdCliente,0,99999,3);
                 publicacion_mostrarPublicacionesClientes(arrayPublicacion, SIZEPUBLICACION, auxiliarIdCliente);
                 cliente_baja(arrayCliente,SIZECLIENTE,auxiliarIdCliente);
-                publicacion_bajaPublicaciones(arrayPublicacion, SIZEPUBLICACION, auxiliarIdCliente);
+                publicacion_bajaPublicaciones(arrayPublicacion, SIZEPUBLICACION);
                 break;
             case 4:
                 publicacion_alta(arrayPublicacion,SIZEPUBLICACION,arrayCliente,SIZECLIENTE);

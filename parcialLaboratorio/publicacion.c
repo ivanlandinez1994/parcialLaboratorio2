@@ -157,19 +157,22 @@ int publicacion_alta(Publicacion* arrayPublicacion,int limitePublicacion, Client
  * \return (0) si la baja fue exitosa (-1) si no lo fue
  *
  */
-int publicacion_bajaPublicaciones(Publicacion* arrayPublicacion,int limitePublicaciones, int idClientes)
+int publicacion_bajaPublicaciones(Publicacion* arrayPublicacion,int limitePublicaciones)
 {
     int retorno = -1;
     int i;
     int indiceAEliminar;
     for(i=0;i<limitePublicaciones;i++)
     {
-        indiceAEliminar = publicacion_buscarPorId(arrayPublicacion, limitePublicaciones, idClientes);
-        if(indiceAEliminar>=0 && !arrayPublicacion[i].isEmpty)
+        if(!arrayPublicacion[i].isEmpty)
         {
-            retorno = 0;
-            arrayPublicacion[indiceAEliminar].isEmpty = 1;
-            printf("\nbaja de clientes exitosa");
+            indiceAEliminar = publicacion_buscarPorId(arrayPublicacion, limitePublicaciones, arrayPublicacion[i].idCliente);
+            if(indiceAEliminar>=0 && !arrayPublicacion[i].isEmpty)
+            {
+                retorno = 0;
+                arrayPublicacion[indiceAEliminar].isEmpty = 1;
+                printf("\nbaja de clientes exitosa");
+            }
         }
     }
     return retorno;
