@@ -78,7 +78,7 @@
 1525997566 d:\parciallaboratorio\publicacion.h
 	"cliente.h"
 
-1525996096 source:d:\parciallaboratorio\publicacion.c
+1525996158 source:d:\parciallaboratorio\publicacion.c
 	<stdio.h>
 	<stdlib.h>
 	<time.h>
@@ -94,12 +94,12 @@
 	<string.h>
 	"utn.h"
 
-1525995852 source:d:\parciallaboratorio\informes.c
+1525997975 source:d:\parciallaboratorio\informes.c
 	<stdio.h>
 	<stdlib.h>
 	<time.h>
+	"publicacion.h"
 	<string.h>
 	"cliente.h"
-	"publicacion.h"
 	"utn.h"
 

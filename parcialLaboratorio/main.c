@@ -5,6 +5,7 @@
 #include "cliente.h"
 #include "publicacion.h"
 #include "utn.h"
+#include "informes.h"
 #define SIZECLIENTE 6
 #define SIZEPUBLICACION 8
 
@@ -37,7 +38,7 @@ int main()
     do
     {
         getValidInt("\n1.Alta Cliente\n2.Modificar datos cliente\n3.Baja cliente\n4.publicar\n"
-                    "5.Pausar publicacion\n6.Reanudar Publicacion\n9.Salir\n","\nNo valida\n",&menu,1,9,1);
+                    "5.Pausar publicacion\n6.Reanudar Publicacion\n7.imprimir clientes\n9.Salir\n","\nNo valida\n",&menu,1,9,1);
         switch(menu)
         {
             case 1:
@@ -63,6 +64,9 @@ int main()
             case 6:
                 getValidInt("ID publicacion a dar reanudar?","\nNumero invalido\n",&auxiliarIdPublicacion,0,99999,3);
                 publicacion_reanudarPublicacion(arrayPublicacion,SIZEPUBLICACION,auxiliarIdPublicacion);
+                break;
+            case 7:
+                informes_mostrarClientes(arrayCliente, SIZECLIENTE, arrayPublicacion,SIZEPUBLICACION);
                 break;
         }
 

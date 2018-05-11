@@ -110,7 +110,7 @@ int publicacion_alta(Publicacion* arrayPublicacion,int limitePublicacion, Client
     int idCliente;
     int numeroRubro;
     char textoAviso[50];
-    if(limitePublicacion > 0 && arrayPublicacion != NULL)
+    if((limitePublicacion > 0 && arrayPublicacion != NULL) && (limiteCliente > 0 && arrayCliente != NULL))
     {
         i = buscarLugarLibre(arrayPublicacion,limitePublicacion);
         if(i >= 0)
@@ -160,13 +160,17 @@ int publicacion_alta(Publicacion* arrayPublicacion,int limitePublicacion, Client
 int publicacion_bajaPublicaciones(Publicacion* arrayPublicacion,int limitePublicaciones, int idClientes)
 {
     int retorno = -1;
+    int i;
     int indiceAEliminar;
-    indiceAEliminar = publicacion_buscarPorId(arrayPublicacion, limitePublicaciones, idClientes);
-    if(indiceAEliminar>=0)
+    for(i=0;i<limitePublicaciones;i++)
     {
-        retorno = 0;
-        arrayPublicacion[indiceAEliminar].isEmpty = 1;
-        printf("\nbaja de clientes exitosa");
+        indiceAEliminar = publicacion_buscarPorId(arrayPublicacion, limitePublicaciones, idClientes);
+        if(indiceAEliminar>=0 && !arrayPublicacion[i].isEmpty)
+        {
+            retorno = 0;
+            arrayPublicacion[indiceAEliminar].isEmpty = 1;
+            printf("\nbaja de clientes exitosa");
+        }
     }
     return retorno;
 }
