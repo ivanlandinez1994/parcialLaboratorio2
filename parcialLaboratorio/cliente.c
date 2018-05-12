@@ -171,7 +171,7 @@ int cliente_modificacion(Cliente* arrayCliente,int limite, int idCliente)
  *
  * \param arrayCliente Cliente* el arrayCliente a ordenar
  * \param limite int el tamaño del arrayCliente
- * \param orden si es de mayor a menor o menor a mayor
+ * \param orden si es (1) de mayor a menor si es (0) menor a mayor
  * \return (0) si el ordenamiento fue exitoso (-1) si no lo fue
  *
  */
@@ -208,16 +208,16 @@ int cliente_modificacion(Cliente* arrayCliente,int limite, int idCliente)
  *
  * \param arrayCliente Cliente* el arrayCliente a ordenar
  * \param limite int el tamaño del arrayCliente
- * \param orden si es de mayor a menor o menor a mayor
+ * \param orden si es (1) de mayor a menor si es (0) menor a mayor
  * \return (0) si el ordenamiento fue exitoso (-1) si no lo fue
  *
  */
-/*int cliente_ordenarNumericamente(Cliente* arrayCliente,int limite, int orden)
+int cliente_ordenarNumericamente(Cliente* arrayCliente,int limite, int orden)
 {
     int retorno = -1;
     int flagSwap;
     int i;
-    char AuxiliarNombre[50];
+    Cliente auxCliente;
     if(limite > 0)
     {
         retorno = 0;
@@ -228,15 +228,16 @@ int cliente_modificacion(Cliente* arrayCliente,int limite, int idCliente)
             {
                 if((arrayCliente[i].idCliente < arrayCliente[i+1].idCliente && orden)||(arrayCliente[i].idCliente > arrayCliente[i+1].idCliente && !orden))
                 {
-                    strcpy(AuxiliarNombre,arrayCliente[i+1].nombre);
-                    strcpy(arrayCliente[i+1].nombre,arrayCliente [i].nombre);
-                    strcpy(arrayCliente[i].nombre,AuxiliarNombre);
+                    auxCliente = arrayCliente[i];
+                    arrayCliente[i] = arrayCliente[i+1];
+                    arrayCliente[i+1] = auxCliente;
+                    flagSwap=1;
                 }
             }
         }while(flagSwap);
     }
     return retorno;
-}*/
+}
 /** \brief busca de un lugar libre en el arrayCliente
  *
  * \param arrayCliente Cliente* el arrayCliente donde se buscara el lugar libre
@@ -299,7 +300,7 @@ int proximoId()
     return proximoId;
 }
 
-int cliente_altaForzada(Cliente* arrayCliente,int limite,char* nombre, int id)
+int cliente_altaForzada(Cliente* arrayCliente,int limite,char* nombre, int id, char* cuitCliente)
 {
     int retorno = -1;
     int i;
@@ -311,6 +312,7 @@ int cliente_altaForzada(Cliente* arrayCliente,int limite,char* nombre, int id)
         {
             retorno = 0;
             strcpy(arrayCliente[i].nombreCliente,nombre);
+            strcpy(arrayCliente[i].cuit,cuitCliente);
             arrayCliente[i].idCliente = id;
             arrayCliente[i].isEmpty = 0;
         }

@@ -6,8 +6,8 @@
 #include "publicacion.h"
 #include "utn.h"
 #include "informes.h"
-#define SIZECLIENTE 8
-#define SIZEPUBLICACION 8
+#define SIZECLIENTE 5
+#define SIZEPUBLICACION 5
 
 int main()
 {
@@ -21,24 +21,25 @@ int main()
     cliente_init(arrayCliente,SIZECLIENTE);
     publicacion_init(arrayPublicacion,SIZEPUBLICACION);
 
-    cliente_altaForzada(arrayCliente,SIZECLIENTE,"Pedro",4);
-    cliente_altaForzada(arrayCliente,SIZECLIENTE,"Adrian",6);
-    cliente_altaForzada(arrayCliente,SIZECLIENTE,"Walter",12);
-    cliente_altaForzada(arrayCliente,SIZECLIENTE,"Liliana",10);
-    cliente_altaForzada(arrayCliente,SIZECLIENTE,"jose",5);
+    cliente_altaForzada(arrayCliente,SIZECLIENTE,"Pedro",0,"67312322");
+    cliente_altaForzada(arrayCliente,SIZECLIENTE,"Adrian",1,"72384943");
+    cliente_altaForzada(arrayCliente,SIZECLIENTE,"Walter",2,"1234567");
+    cliente_altaForzada(arrayCliente,SIZECLIENTE,"Liliana",3,"92385825");
+    cliente_altaForzada(arrayCliente,SIZECLIENTE,"jose",4,"12312543");
     cliente_mostrarDebug(arrayCliente, SIZECLIENTE);
 
-    publicacion_altaForzada(arrayPublicacion,SIZEPUBLICACION, 25,2,4,"se vende pedro",1);
-    publicacion_altaForzada(arrayPublicacion,SIZEPUBLICACION, 15,5,6,"se vende adrian",1);
-    publicacion_altaForzada(arrayPublicacion,SIZEPUBLICACION, 21,1,12,"se vende walter",1);
-    publicacion_altaForzada(arrayPublicacion,SIZEPUBLICACION, 18,0,10,"se vende liliana",1);
-    publicacion_altaForzada(arrayPublicacion,SIZEPUBLICACION, 13,8,5,"se vende jose",1);
+    publicacion_altaForzada(arrayPublicacion,SIZEPUBLICACION, 25,2,0,"se vende pedro",1);
+    publicacion_altaForzada(arrayPublicacion,SIZEPUBLICACION, 15,5,1,"se vende adrian",1);
+    publicacion_altaForzada(arrayPublicacion,SIZEPUBLICACION, 21,1,2,"se vende walter",1);
+    publicacion_altaForzada(arrayPublicacion,SIZEPUBLICACION, 18,0,3,"se vende liliana",1);
+    publicacion_altaForzada(arrayPublicacion,SIZEPUBLICACION, 13,8,4,"se vende jose",1);
     publicacion_mostrarDebug(arrayPublicacion,SIZEPUBLICACION);
 
     do
     {
         getValidInt("\n1.Alta Cliente\n2.Modificar datos cliente\n3.Baja cliente\n4.publicar\n"
-                    "5.Pausar publicacion\n6.Reanudar Publicacion\n7.imprimir clientes\n9.Salir\n","\nNo valida\n",&menu,1,9,1);
+                    "5.Pausar publicacion\n6.Reanudar Publicacion\n7.imprimir clientes\n8.Imprimir publicaciones"
+                    "\n9.Salir\n","\nNo valida\n",&menu,1,9,1);
         switch(menu)
         {
             case 1:
@@ -67,6 +68,9 @@ int main()
                 break;
             case 7:
                 informes_mostrarClientes(arrayCliente, SIZECLIENTE, arrayPublicacion,SIZEPUBLICACION);
+                break;
+            case 8:
+                informes_mostrarPublicaciones(arrayCliente,SIZECLIENTE,arrayPublicacion,SIZEPUBLICACION);
                 break;
         }
 

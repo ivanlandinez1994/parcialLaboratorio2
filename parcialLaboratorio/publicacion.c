@@ -258,7 +258,7 @@ int publicacion_reanudarPublicacion(Publicacion* arrayPublicacion,int limite, in
  *
  * \param arrayPublicacion Publicacion* el arrayPublicacion a ordenar
  * \param limite int el tamaño del arrayPublicacion
- * \param orden si es de mayor a menor o menor a mayor
+ * \param orden si es (1) de mayor a menor si es (0) menor a mayor
  * \return (0) si el ordenamiento fue exitoso (-1) si no lo fue
  *
  */
@@ -295,7 +295,7 @@ int publicacion_reanudarPublicacion(Publicacion* arrayPublicacion,int limite, in
  *
  * \param arrayPublicacion Publicacion* el arrayPublicacion a ordenar
  * \param limite int el tamaño del arrayPublicacion
- * \param orden si es de mayor a menor o menor a mayor
+ * \param orden si es (1) de mayor a menor si es (0) menor a mayor
  * \return (0) si el ordenamiento fue exitoso (-1) si no lo fue
  *
  */
@@ -318,6 +318,7 @@ int publicacion_reanudarPublicacion(Publicacion* arrayPublicacion,int limite, in
                     strcpy(AuxiliarNombre,arrayPublicacion[i+1].nombre);
                     strcpy(arrayPublicacion[i+1].nombre,arrayPublicacion [i].nombre);
                     strcpy(arrayPublicacion[i].nombre,AuxiliarNombre);
+                    flagSwap = 1;
                 }
             }
         }while(flagSwap);

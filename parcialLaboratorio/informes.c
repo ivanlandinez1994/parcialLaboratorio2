@@ -18,7 +18,6 @@
 int informes_cantidadAvisosActivos(Publicacion* arrayPublicacion,int idCliente,int limitePublicacion)
 {
     int i;
-    int indiceBuscarCliente;
     int acumuladorPublicaciones=0;
     if(limitePublicacion > 0 && arrayPublicacion != NULL)
     {
@@ -26,13 +25,9 @@ int informes_cantidadAvisosActivos(Publicacion* arrayPublicacion,int idCliente,i
         {
             if(!arrayPublicacion[i].isEmpty)
             {
-                indiceBuscarCliente = publicacion_buscarPorId(arrayPublicacion,limitePublicacion,idCliente);
-                if(indiceBuscarCliente>0 && arrayPublicacion[i].estado == 1)
+                if(arrayPublicacion[i].idCliente == idCliente && arrayPublicacion[i].estado == 1)
                 {
-                    for(i=0;i<limitePublicacion;i++)
-                    {
                        acumuladorPublicaciones++;
-                    }
                 }
             }
 
@@ -45,6 +40,7 @@ int informes_mostrarClientes(Cliente* arrayCliente,int limiteCliente, Publicacio
 {
     int retorno = -1;
     int i;
+    cliente_ordenarNumericamente(arrayCliente,limiteCliente,0);
     if(limiteCliente > 0 && arrayCliente != NULL)
     {
         retorno = 0;
@@ -52,9 +48,9 @@ int informes_mostrarClientes(Cliente* arrayCliente,int limiteCliente, Publicacio
         {
             if(!arrayCliente[i].isEmpty && !arrayPublicacion[i].isEmpty)
             {
-                printf("Nombre Cliente: %s, Apellido cliente: %s, Cuit cliente: %s, idCliente: %d\n",
+                printf("Nombre Cliente: %s, Apellido cliente: %s, Cuit cliente: %s, idCliente: %d, ",
                        arrayCliente[i].nombreCliente, arrayCliente[i].apellidoCliente, arrayCliente[i].cuit, arrayCliente[i].idCliente);
-                printf("cantidad de de avisos activos: %d", informes_cantidadAvisosActivos(arrayPublicacion,arrayPublicacion[i].idCliente,limitePublicacion));
+                printf("cantidad de de avisos activos: %d\n", informes_cantidadAvisosActivos(arrayPublicacion,arrayPublicacion[i].idCliente,limitePublicacion));
 
             }
 
@@ -63,10 +59,11 @@ int informes_mostrarClientes(Cliente* arrayCliente,int limiteCliente, Publicacio
     return retorno;
 }
 
-int informes_mostrarClPublicaciones(Cliente* arrayCliente,int limiteCliente, Publicacion* arrayPublicacion,int limitePublicacion)
+int informes_mostrarPublicaciones(Cliente* arrayCliente,int limiteCliente, Publicacion* arrayPublicacion,int limitePublicacion)
 {
     int retorno = -1;
     int i;
+    int indiceCuitCliente;
     if((limiteCliente > 0 && arrayCliente != NULL)&& (limitePublicacion > 0 && arrayPublicacion != NULL))
     {
         retorno = 0;
@@ -74,15 +71,13 @@ int informes_mostrarClPublicaciones(Cliente* arrayCliente,int limiteCliente, Pub
         {
             if(!arrayCliente[i].isEmpty && !arrayPublicacion[i].isEmpty)
             {
-                if(arrayPublicacion[i].estado ==1 )
+                if(arrayPublicacion[i].estado == 1 )
                 {
-                    printf("id Cliente: %d, numero rubro: %d, texto aviso: %s, id publicacion: %d, ",
+                    indiceCuitCliente = cliente_buscarPorId(arrayCliente,limiteCliente,arrayCliente[i].idCliente);
+                    printf("id Cliente: %d, numero rubro: %d, texto aviso: %s,\nId publicacion: %d, ",
                            arrayPublicacion[i].idCliente, arrayPublicacion[i].numeroRubro, arrayPublicacion[i].textoAviso, arrayPublicacion[i].idPublicacion);
-                    printf("cantidad de de avisos activos: %d, ", informes_cantidadAvisosActivos(arrayPublicacion,arrayPublicacion[i].idCliente,limitePublicacion));
-                    if(arrayCliente[i].idCliente == arrayPublicacion[i].idCliente)
-                    {
-                        printf("Cuit Cliente: %s",arrayCliente[i].cuit);
-                    }
+                    printf("cantidad de de avisos activos: %d, Cuit Cliente: %s\n\n", informes_cantidadAvisosActivos(arrayPublicacion,arrayPublicacion[i].idCliente, limitePublicacion), arrayCliente[indiceCuitCliente].cuit);
+
                 }
             }
 
@@ -90,3 +85,26 @@ int informes_mostrarClPublicaciones(Cliente* arrayCliente,int limiteCliente, Pub
     }
     return retorno;
 }
+
+int informes_clienteConMasAvisos(Publicacion* arrayPublicacion,int limitePublicacion)
+{
+    int i;
+    int clienteMasAvisosActivos;
+    int acumuladorPublicaciones=0;
+    if(limitePublicacion > 0 && arrayPublicacion != NULL)
+    {
+        for(i=0;i<limitePublicacion;i++)
+        {
+            if(!arrayPublicacion[i].isEmpty)
+            {
+                if(arrayPublicacion[i].idCliente == idCliente && arrayPublicacion[i].estado == 1)
+                {
+                       acumuladorPublicaciones++;
+                }
+            }
+
+        }
+    }
+    return acumuladorPublicaciones;
+}
+

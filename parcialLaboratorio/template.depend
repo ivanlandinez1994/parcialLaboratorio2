@@ -103,3 +103,56 @@
 	"cliente.h"
 	"utn.h"
 
+1526081869 source:d:\parciallaboratorio2\parciallaboratorio\cliente.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<string.h>
+	"publicacion.h"
+	"cliente.h"
+	"utn.h"
+
+1526078332 d:\parciallaboratorio2\parciallaboratorio\publicacion.h
+	"cliente.h"
+
+1526081334 d:\parciallaboratorio2\parciallaboratorio\cliente.h
+
+1526078332 d:\parciallaboratorio2\parciallaboratorio\utn.h
+
+1526081313 source:d:\parciallaboratorio2\parciallaboratorio\informes.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	"publicacion.h"
+	<string.h>
+	"cliente.h"
+	"utn.h"
+
+1526081869 source:d:\parciallaboratorio2\parciallaboratorio\main.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<string.h>
+	"cliente.h"
+	"publicacion.h"
+	"utn.h"
+	"informes.h"
+
+1526079143 d:\parciallaboratorio2\parciallaboratorio\informes.h
+
+1526081869 source:d:\parciallaboratorio2\parciallaboratorio\publicacion.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<string.h>
+	"cliente.h"
+	"publicacion.h"
+	"utn.h"
+
+1526078332 source:d:\parciallaboratorio2\parciallaboratorio\utn.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<string.h>
+	"utn.h"
+
