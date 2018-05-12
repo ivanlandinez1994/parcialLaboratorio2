@@ -119,7 +119,7 @@
 
 1526078332 d:\parciallaboratorio2\parciallaboratorio\utn.h
 
-1526081313 source:d:\parciallaboratorio2\parciallaboratorio\informes.c
+1526163192 source:d:\parciallaboratorio2\parciallaboratorio\informes.c
 	<stdio.h>
 	<stdlib.h>
 	<time.h>
@@ -128,7 +128,7 @@
 	"cliente.h"
 	"utn.h"
 
-1526081869 source:d:\parciallaboratorio2\parciallaboratorio\main.c
+1526163164 source:d:\parciallaboratorio2\parciallaboratorio\main.c
 	<stdio.h>
 	<stdlib.h>
 	<time.h>
@@ -138,7 +138,7 @@
 	"utn.h"
 	"informes.h"
 
-1526079143 d:\parciallaboratorio2\parciallaboratorio\informes.h
+1526163114 d:\parciallaboratorio2\parciallaboratorio\informes.h
 
 1526081869 source:d:\parciallaboratorio2\parciallaboratorio\publicacion.c
 	<stdio.h>

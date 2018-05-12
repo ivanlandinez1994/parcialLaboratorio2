@@ -39,7 +39,7 @@ int main()
     {
         getValidInt("\n1.Alta Cliente\n2.Modificar datos cliente\n3.Baja cliente\n4.publicar\n"
                     "5.Pausar publicacion\n6.Reanudar Publicacion\n7.imprimir clientes\n8.Imprimir publicaciones"
-                    "\n9.Salir\n","\nNo valida\n",&menu,1,9,1);
+                    "\n9.Informes clientes\n10.Informes publicaciones\n11.Salir\n","\nNo valida\n",&menu,1,11,1);
         switch(menu)
         {
             case 1:
@@ -72,9 +72,15 @@ int main()
             case 8:
                 informes_mostrarPublicaciones(arrayCliente,SIZECLIENTE,arrayPublicacion,SIZEPUBLICACION);
                 break;
+            case 9:
+                informes_clienteCantidadAvisos(arrayPublicacion,SIZEPUBLICACION,arrayCliente,SIZECLIENTE);
+                break;
+            case 10:
+                informes_publicacionesPorRubro(arrayPublicacion,SIZEPUBLICACION,arrayCliente,SIZECLIENTE);
+                break;
         }
 
-    }while(menu != 9);
+    }while(menu != 11);
 
     return 0;
 }
