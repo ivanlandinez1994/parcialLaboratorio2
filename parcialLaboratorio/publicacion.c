@@ -32,6 +32,14 @@ int publicacion_init(Publicacion* arrayPublicacion,int limite)
     return retorno;
 }
 
+/** \brief pide el id y muestra todas las publicaciones de dicho cliente
+ *
+ * \param arrayPublicacion el array a mostrar
+ * \param limitePublicacion el tamaño de dicho array
+ * \param idCliente el id del cual se mostraran las publicaciones
+ * \return (0) si el array existe y si tiene un tamño mayor a 0 (-1) de lo contrario
+ *
+ */
 int publicacion_mostrarPublicacionesClientes(Publicacion* arrayPublicacion,int limitePublicacion, int idCliente)
 {
     int retorno = -1;
@@ -73,28 +81,6 @@ int publicacion_mostrarDebug(Publicacion* arrayPublicacion,int limite)
     return retorno;
 }
 
-/** \brief imprime informacion sobre el arrayPublicacion
- *
- * \param arrayPublicacion Publicacion* el arrayPublicacion a inicializar
- * \param limite int el tamaño del arrayPublicacion
- * \return (0) si imprime correctamente todo el arrayPublicacion (-1) si no se logra imprimir
- *
- */
-/*int publicacion_mostrar(Publicacion* arrayPublicacion,int limite)
-{
-    int retorno = -1;
-    int i;
-    if(limite > 0 && arrayPublicacion != NULL)
-    {
-        retorno = 0;
-        for(i=0;i<limite;i++)
-        {
-            if(!arrayPublicacion[i].isEmpty)
-                printf("[RELEASE] - %d - %s - %d\n",arrayPublicacion[i].idPublicacion, arrayPublicacion[i].nombre, arrayPublicacion[i].isEmpty);
-        }
-    }
-    return retorno;
-}*/
 
 /** \brief alta de los datos a utilizar
  *
@@ -148,7 +134,6 @@ int publicacion_alta(Publicacion* arrayPublicacion,int limitePublicacion, Client
 }
 
 
-
 /** \brief baja de los datos a utilizar
  *
  * \param arrayPublicacion Publicacion* el arrayPublicacion a dar de baja
@@ -157,21 +142,19 @@ int publicacion_alta(Publicacion* arrayPublicacion,int limitePublicacion, Client
  * \return (0) si la baja fue exitosa (-1) si no lo fue
  *
  */
-int publicacion_bajaPublicaciones(Publicacion* arrayPublicacion,int limitePublicaciones)
+int publicacion_bajaPublicaciones(Publicacion* arrayPublicacion,int limitePublicaciones, int idCliente)
 {
     int retorno = -1;
     int i;
-    int indiceAEliminar;
     for(i=0;i<limitePublicaciones;i++)
     {
         if(!arrayPublicacion[i].isEmpty)
         {
-            indiceAEliminar = publicacion_buscarPorId(arrayPublicacion, limitePublicaciones, arrayPublicacion[i].idCliente);
-            if(indiceAEliminar>=0 && !arrayPublicacion[i].isEmpty)
+            if(arrayPublicacion[i].idCliente == idCliente && !arrayPublicacion[i].isEmpty)
             {
                 retorno = 0;
-                arrayPublicacion[indiceAEliminar].isEmpty = 1;
-                printf("\nbaja de clientes exitosa");
+                arrayPublicacion[i].isEmpty = 1;
+                printf("\nbaja de publicacion %d exitosa",i+1);
             }
         }
     }
@@ -254,43 +237,6 @@ int publicacion_reanudarPublicacion(Publicacion* arrayPublicacion,int limite, in
     return retorno;
 }
 
-/** \brief ordenamiento de datos de tipo char o string
- *
- * \param arrayPublicacion Publicacion* el arrayPublicacion a ordenar
- * \param limite int el tamaño del arrayPublicacion
- * \param orden si es (1) de mayor a menor si es (0) menor a mayor
- * \return (0) si el ordenamiento fue exitoso (-1) si no lo fue
- *
- */
-/*int publicacion_ordenarChar(Publicacion* arrayPublicacion,int limite, int orden)
-{
-    int retorno = -1;
-    int i;
-    int flagSwap;
-    Publicacion auxiliarEstructura;
-
-    if(limite > 0 && arrayPublicacion != NULL)
-    {
-        do
-        {
-            flagSwap = 0;
-            for(i=0;i<limite-1;i++)
-            {
-                if(!arrayPublicacion[i].isEmpty && !arrayPublicacion[i+1].isEmpty)
-                {
-                    if((strcmp(arrayPublicacion[i].nombre,arrayPublicacion[i+1].nombre) > 0 && orden) || (strcmp(arrayPublicacion[i].nombre,arrayPublicacion[i+1].nombre) < 0 && !orden))
-                    {
-                        auxiliarEstructura = arrayPublicacion[i];
-                        arrayPublicacion[i] = arrayPublicacion[i+1];
-                        arrayPublicacion[i+1] = auxiliarEstructura;
-                        flagSwap = 1;
-                    }
-                }
-            }
-        }while(flagSwap);
-    }
-    return retorno;
-}*/
 /** \brief ordenamiento de datos de tipo numerico
  *
  * \param arrayPublicacion Publicacion* el arrayPublicacion a ordenar
@@ -299,12 +245,12 @@ int publicacion_reanudarPublicacion(Publicacion* arrayPublicacion,int limite, in
  * \return (0) si el ordenamiento fue exitoso (-1) si no lo fue
  *
  */
-/*int publicacion_ordenarNumericamente(Publicacion* arrayPublicacion,int limite, int orden)
+int publicacion_ordenarNumericamente(Publicacion* arrayPublicacion,int limite, int orden)
 {
     int retorno = -1;
     int flagSwap;
     int i;
-    char AuxiliarNombre[50];
+    Publicacion publicacionAux;
     if(limite > 0)
     {
         retorno = 0;
@@ -313,18 +259,18 @@ int publicacion_reanudarPublicacion(Publicacion* arrayPublicacion,int limite, in
             flagSwap = 0;
             for(i=0;i<limite-1;i++)
             {
-                if((arrayPublicacion[i].idPublicacion < arrayPublicacion[i+1].idPublicacion && orden)||(arrayPublicacion[i].idPublicacion > arrayPublicacion[i+1].idPublicacion && !orden))
+                if((arrayPublicacion[i].numeroRubro < arrayPublicacion[i+1].numeroRubro && orden)||(arrayPublicacion[i].numeroRubro > arrayPublicacion[i+1].numeroRubro && !orden))
                 {
-                    strcpy(AuxiliarNombre,arrayPublicacion[i+1].nombre);
-                    strcpy(arrayPublicacion[i+1].nombre,arrayPublicacion [i].nombre);
-                    strcpy(arrayPublicacion[i].nombre,AuxiliarNombre);
+                    publicacionAux = arrayPublicacion[i];
+                    arrayPublicacion[i] = arrayPublicacion[i+1];
+                    arrayPublicacion[i+1] = publicacionAux;
                     flagSwap = 1;
                 }
             }
         }while(flagSwap);
     }
     return retorno;
-}*/
+}
 /** \brief busca de un lugar libre en el arrayPublicacion
  *
  * \param arrayPublicacion Publicacion* el arrayPublicacion donde se buscara el lugar libre
@@ -387,7 +333,7 @@ int proximoId()
     return proximoId;
 }
 
-int publicacion_altaForzada(Publicacion* arrayPublicacion,int limite,int numeroRubro, int idPublicacion, int idCliente, char* textoAviso, int estado)
+/*int publicacion_altaForzada(Publicacion* arrayPublicacion,int limite,int numeroRubro, int idPublicacion, int idCliente, char* textoAviso, int estado)
 {
     int retorno = -1;
     int i;
@@ -408,4 +354,4 @@ int publicacion_altaForzada(Publicacion* arrayPublicacion,int limite,int numeroR
         retorno = 0;
     }
     return retorno;
-}
+}*/

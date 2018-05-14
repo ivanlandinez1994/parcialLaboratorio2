@@ -14,19 +14,17 @@ typedef struct
 int publicacion_init(Publicacion* array,int limite);
 int publicacion_buscarPorId(Publicacion* arrayPublicacion, int limite, int id);
 
-//int publicacion_mostrar(Publicacion* array,int limite);
-
 int publicacion_mostrarDebug(Publicacion* arrayPublicacion,int limite);
-int publicacion_mostrarPublicacionesClientes(Publicacion* arrayPublicacion,int limitePublicacion, int idCliente);
+int publicacion_mostrarPublicacionesClientes(Publicacion* arrayPublicacion,int limitePublicacion, int idCliente);// para el punto 3
 
 int publicacion_alta(Publicacion* arrayPublicacion,int limitePublicacion, Cliente* arrayCliente, int limiteCliente);
-int publicacion_bajaPublicaciones(Publicacion* arrayPublicacion,int limite);
+int publicacion_bajaPublicaciones(Publicacion* arrayPublicacion,int limite, int idCliente);
 
 int publicacion_pausarPublicacion(Publicacion* arrayPublicacion,int limite, int idPublicacion);
 int publicacion_reanudarPublicacion(Publicacion* arrayPublicacion,int limite, int idPublicacion);
-/*int publicacion_ordenarChar(Publicacion* array,int limite, int orden);
-int publicacion_ordenarNumericamente(Publicacion* array,int limite, int orden);*/
-int publicacion_altaForzada(Publicacion* arrayPublicacion,int limite,int numeroRubro, int idPublicacion, int idCliente, char* textoAviso, int estado);
+
+int publicacion_ordenarNumericamente(Publicacion* array,int limite, int orden);
+//int publicacion_altaForzada(Publicacion* arrayPublicacion,int limite,int numeroRubro, int idPublicacion, int idCliente, char* textoAviso, int estado);
 #endif // PUBLICACION_H_INCLUDED
 
 

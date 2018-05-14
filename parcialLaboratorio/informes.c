@@ -2,10 +2,8 @@
 #include <stdlib.h>
 #include <time.h>
 #include "publicacion.h"
-
 #include <string.h>
 #include "cliente.h"
-
 #include "utn.h"
 
 /** \brief imprime la cantidad de avissos quee tiene el array publicacion
@@ -16,7 +14,7 @@
  * \return la cantidad de avisos del cliente
  *
  */
- int informes_cantidadAvisos(Publicacion* arrayPublicacion,int idCliente,int limitePublicacion)
+int informes_cantidadAvisos(Publicacion* arrayPublicacion,int idCliente,int limitePublicacion)
 {
     int i;
     int acumuladorPublicaciones=0;
@@ -232,6 +230,87 @@ int informes_clienteCantidadAvisos(Publicacion* arrayPublicacion,int limitePubli
     printf("\n(C)El cliente con mas avisos es:\nNombre: %s Apellido: %s, idCliente: %d, Cantidad Avisos: %d\n",
             arrayCliente[idClienteMasAvisos].nombreCliente, arrayCliente[idClienteMasAvisos].apellidoCliente,
             arrayCliente[idClienteMasAvisos].idCliente, maxCantidadAvisos);
+    }
+    return retorno;
+}
+
+/** \brief muestra la cantidad de publicaciones activas que tiene dicho rubro
+ * \param arrayPublicacion del cual sabremos los estados activos
+ * \param limite int el tamaño del arrayPublicacion
+ * \return la cantidad de publicaciones activas
+ *
+ */
+int informes_cantidadPublicacionesRubro(Publicacion* arrayPublicacion,int rubro,int limitePublicacion)
+{
+    int i;
+    int acumuladorPublicaciones=0;
+    if(limitePublicacion > 0 && arrayPublicacion != NULL)
+    {
+        for(i=0;i<limitePublicacion;i++)
+        {
+            if(!arrayPublicacion[i].isEmpty)
+            {
+                if(arrayPublicacion[i].numeroRubro == rubro && arrayPublicacion[i].estado == 1)
+                {
+                       acumuladorPublicaciones++;
+                }
+            }
+        }
+    }
+    return acumuladorPublicaciones;
+}
+
+/** \brief muestra la cantidad de avisos activos, el de mayor cantidad de activos y el de menor cantidad de activos
+ *
+ * \param arrayPublicacion del cual sabremos los estados activos
+ * \param limite int el tamaño del arrayPublicacion
+ * \return (0) si los limites son mayores a 0 y si los array existen. de lo contrario (-1)
+ *
+ */
+int informes_publicacionesPorRubro(Publicacion* arrayPublicacion,int limitePublicacion)
+{
+    int retorno=-1;
+    int i;
+    int rubro;
+    int flagMaximoActivos=1;
+    int flagMinimoActivos=1;
+    int maxCantidadPublicacionesActivas;
+    int idPublicacionMinActivas;
+    int minCantidadPublicacionesActivas;
+    int idPublicacionMaxActivas;
+    if(limitePublicacion > 0 && arrayPublicacion != NULL)
+    {
+        for(i=0;i<limitePublicacion;i++)
+        {
+            if(!arrayPublicacion[i].isEmpty)
+            {
+                retorno=0;
+                if(maxCantidadPublicacionesActivas<informes_cantidadPublicacionesRubro(arrayPublicacion,arrayPublicacion[i].numeroRubro,limitePublicacion)
+                   || flagMaximoActivos==1)
+                {
+                    maxCantidadPublicacionesActivas = informes_cantidadPublicacionesRubro(arrayPublicacion,arrayPublicacion[i].numeroRubro,limitePublicacion);
+                    flagMaximoActivos=0;
+                    idPublicacionMaxActivas = i;
+                }
+
+                if(minCantidadPublicacionesActivas>informes_cantidadPublicacionesRubro(arrayPublicacion,arrayPublicacion[i].numeroRubro,limitePublicacion)
+                   || flagMinimoActivos==1)
+                {
+                    minCantidadPublicacionesActivas = informes_cantidadPublicacionesRubro(arrayPublicacion,arrayPublicacion[i].numeroRubro,limitePublicacion);
+                    flagMinimoActivos=0;
+                    idPublicacionMinActivas = i;
+                }
+            }
+        }
+    getValidInt("ingrese rubro del cual desea saber la cantidad de publicaciones activas: ","ingrese un rubro correcto",&rubro,1,9999,3);
+    if(rubro>0 && rubro<9999 && rubro>1)
+    {
+        printf("\n(A)El rubro tiene %d publicaciones activas\n",informes_cantidadPublicacionesRubro(arrayPublicacion,rubro,limitePublicacion));
+    }
+    printf("\n(B)El rubro con mas cantidad de publicaciones activas es: %d, la cantidad fue: %d\n",
+            arrayPublicacion[idPublicacionMaxActivas].numeroRubro, maxCantidadPublicacionesActivas);
+    printf("\n(C)El rubro con menos cantidad de publicaciones activas es: %d, la cantidad fue: %d\n",
+           arrayPublicacion[idPublicacionMinActivas].numeroRubro, minCantidadPublicacionesActivas);
     }
     return retorno;
 }

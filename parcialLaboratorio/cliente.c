@@ -103,8 +103,6 @@ int cliente_alta(Cliente* arrayCliente,int limite)
     return retorno;
 }
 
-
-
 /** \brief baja de los datos a utilizar
  *
  * \param arrayCliente Cliente* el arrayCliente a dar de baja
@@ -135,6 +133,7 @@ int cliente_baja(Cliente* arrayCliente,int limite, int idCliente)
  * \return (0) si la modificacion fue exitosa (-1) si no lo fue (-2) si se ingreso algo que no era un string
  *
  */
+
 int cliente_modificacion(Cliente* arrayCliente,int limite, int idCliente)
 {
     int retorno = -1;
@@ -167,43 +166,7 @@ int cliente_modificacion(Cliente* arrayCliente,int limite, int idCliente)
     retorno = 0;
     return retorno;
 }
-/** \brief ordenamiento de datos de tipo char o string
- *
- * \param arrayCliente Cliente* el arrayCliente a ordenar
- * \param limite int el tamaño del arrayCliente
- * \param orden si es (1) de mayor a menor si es (0) menor a mayor
- * \return (0) si el ordenamiento fue exitoso (-1) si no lo fue
- *
- */
-/*int cliente_ordenarChar(Cliente* arrayCliente,int limite, int orden)
-{
-    int retorno = -1;
-    int i;
-    int flagSwap;
-    Cliente auxiliarEstructura;
 
-    if(limite > 0 && arrayCliente != NULL)
-    {
-        do
-        {
-            flagSwap = 0;
-            for(i=0;i<limite-1;i++)
-            {
-                if(!arrayCliente[i].isEmpty && !arrayCliente[i+1].isEmpty)
-                {
-                    if((strcmp(arrayCliente[i].nombre,arrayCliente[i+1].nombre) > 0 && orden) || (strcmp(arrayCliente[i].nombre,arrayCliente[i+1].nombre) < 0 && !orden))
-                    {
-                        auxiliarEstructura = arrayCliente[i];
-                        arrayCliente[i] = arrayCliente[i+1];
-                        arrayCliente[i+1] = auxiliarEstructura;
-                        flagSwap = 1;
-                    }
-                }
-            }
-        }while(flagSwap);
-    }
-    return retorno;
-}*/
 /** \brief ordenamiento de datos de tipo numerico
  *
  * \param arrayCliente Cliente* el arrayCliente a ordenar
@@ -238,6 +201,7 @@ int cliente_ordenarNumericamente(Cliente* arrayCliente,int limite, int orden)
     }
     return retorno;
 }
+
 /** \brief busca de un lugar libre en el arrayCliente
  *
  * \param arrayCliente Cliente* el arrayCliente donde se buscara el lugar libre
@@ -245,6 +209,7 @@ int cliente_ordenarNumericamente(Cliente* arrayCliente,int limite, int orden)
  * \return devuelve el lugar libre
  *
  */
+
 int buscarLugarLibre(Cliente* arrayCliente,int limite)
 {
     int retorno = -1;
@@ -262,6 +227,7 @@ int buscarLugarLibre(Cliente* arrayCliente,int limite)
     }
     return retorno;
 }
+
 /** \brief busca dentro del arrayCliente el valor que se le pasa como id
  *
  * \param arrayCliente Cliente* el arrayCliente donde se buscara la coincidencia
@@ -288,6 +254,7 @@ int cliente_buscarPorId(Cliente* arrayCliente, int limite, int idCliente)
     }
     return retorno;
 }
+
 /** \brief genera un id unico
  *
  * \return el id
@@ -300,7 +267,7 @@ int proximoId()
     return proximoId;
 }
 
-int cliente_altaForzada(Cliente* arrayCliente,int limite,char* nombre, int id, char* cuitCliente)
+/*int cliente_altaForzada(Cliente* arrayCliente,int limite,char* nombre, int id, char* cuitCliente)
 {
     int retorno = -1;
     int i;
@@ -319,4 +286,4 @@ int cliente_altaForzada(Cliente* arrayCliente,int limite,char* nombre, int id, c
         retorno = 0;
     }
     return retorno;
-}
+}*/
