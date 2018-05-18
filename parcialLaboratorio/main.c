@@ -67,11 +67,12 @@ int main()
                 break;
             case 5:
                 getValidInt("ID publicacion a dar pausar?","\nNumero invalido\n",&auxiliarIdPublicacion,0,99999,3);
-                publicacion_pausarPublicacion(arrayPublicacion,SIZEPUBLICACION,auxiliarIdPublicacion);
+                publicacion_pausar(arrayPublicacion,SIZEPUBLICACION,auxiliarIdPublicacion);
+
                 break;
             case 6:
                 getValidInt("ID publicacion a dar reanudar?","\nNumero invalido\n",&auxiliarIdPublicacion,0,99999,3);
-                publicacion_reanudarPublicacion(arrayPublicacion,SIZEPUBLICACION,auxiliarIdPublicacion);
+                publicacion_reanudar(arrayPublicacion,SIZEPUBLICACION, auxiliarIdPublicacion);
                 break;
             case 7:
                 informes_mostrarClientes(arrayCliente,SIZECLIENTE,arrayPublicacion,SIZEPUBLICACION);

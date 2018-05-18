@@ -170,32 +170,29 @@ int publicacion_bajaPublicaciones(Publicacion* arrayPublicacion,int limitePublic
  * \return (0) si el pausado fue exitosa (-1) si no lo fue
  *
  */
-int publicacion_pausarPublicacion(Publicacion* arrayPublicacion,int limite, int idPublicacion)
+ int publicacion_pausar(Publicacion* publicacion,int limite, int idPublicacion)
 {
     int retorno = -1;
-    int indiceAPausar;
-    int respuestaPausado;
+    int i;
+    int opcion;
 
-    indiceAPausar = publicacion_buscarPorId(arrayPublicacion, limite, idPublicacion);
-    if(indiceAPausar>0)
+    getValidInt("Desea cambiar el estado a pausado? (1.SI / 2.NO) ","Esa no es una opcion valida",&opcion,0,1,2);
+
+    if(opcion == 1)
     {
-        if(arrayPublicacion[indiceAPausar].estado == 1)
+        if(limite > 0 && publicacion != NULL)
         {
-            retorno = 0;
-            printf("\nnumero rubro: %d, IdPublicacion: %d, IdCliente: %d, el estado de la publicacion es activo",
-                   arrayPublicacion[indiceAPausar].numeroRubro, arrayPublicacion[indiceAPausar].idPublicacion, arrayPublicacion[indiceAPausar].idCliente);
-            getValidInt("\nEsta seguro que desea poner en pausa la publicacion presione(0)para ponerla en pausa (1) para cancelar?",
-                        "\nIngrese una opcion correcta",&respuestaPausado,0,1,3);
-            if(respuestaPausado == 0)
+            retorno = -2;
+            for(i=0;i<limite;i++)
             {
-                arrayPublicacion[indiceAPausar].estado = 0;
-                printf("\nse pauso la publicacion correctamente");
+                if(!publicacion[i].isEmpty && publicacion[i].idPublicacion==idPublicacion)
+                {
+                    publicacion[i].estado = 0;
+                    retorno = 0;
+                    break;
+                }
             }
-            else
-                printf("\nno se cancelo la publicacion");
         }
-        else
-            printf("\nel estado de la publicacion ya esta en pausa");
     }
     return retorno;
 }
@@ -208,32 +205,29 @@ int publicacion_pausarPublicacion(Publicacion* arrayPublicacion,int limite, int 
  * \return (0) si el pausado fue exitosa (-1) si no lo fue
  *
  */
-int publicacion_reanudarPublicacion(Publicacion* arrayPublicacion,int limite, int idPublicacion)
+int publicacion_reanudar(Publicacion* publicacion,int limite, int idPublicacion)
 {
     int retorno = -1;
-    int indiceAReanudar;
-    int respuestaReanudado;
+    int i;
+    int opcion;
 
-    indiceAReanudar = publicacion_buscarPorId(arrayPublicacion, limite, idPublicacion);
-    if(indiceAReanudar>0)
+    getValidInt("Desea cambiar el estado a activo? (1.SI / 2.NO) ","Esa no es una opcion valida",&opcion,0,1,2);
+
+    if(opcion == 1)
     {
-        if(arrayPublicacion[indiceAReanudar].estado == 0)
+        if(limite > 0 && publicacion != NULL)
         {
-            retorno = 0;
-            printf("\nnumero rubro: %d, IdPublicacion: %d, IdCliente: %d, el estado de la publicacion es Pausado",
-                   arrayPublicacion[indiceAReanudar].numeroRubro, arrayPublicacion[indiceAReanudar].idPublicacion, arrayPublicacion[indiceAReanudar].idCliente);
-            getValidInt("\nEsta seguro que desea reanudar la publicacion presione(1)para ponerla activa nuevamente (0) para cancelar?",
-                        "\nIngrese una opcion correcta",&respuestaReanudado,0,1,3);
-            if(respuestaReanudado == 1)
+            retorno = -2;
+            for(i=0;i<limite;i++)
             {
-                arrayPublicacion[indiceAReanudar].estado = 1;
-                printf("\nLa publicacion esta activa nuevamente");
+                if(!publicacion[i].isEmpty && publicacion[i].idPublicacion==idPublicacion)
+                {
+                    publicacion[i].estado = 1;
+                    retorno = 0;
+                    break;
+                }
             }
-            else
-                printf("\nno se puso activa la publicacion");
         }
-        else
-            printf("\nel estado de la publicacion ya esta en pausa");
     }
     return retorno;
 }

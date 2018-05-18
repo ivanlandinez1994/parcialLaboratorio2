@@ -19,9 +19,9 @@ int publicacion_mostrarPublicacionesClientes(Publicacion* arrayPublicacion,int l
 
 int publicacion_alta(Publicacion* arrayPublicacion,int limitePublicacion, Cliente* arrayCliente, int limiteCliente);
 int publicacion_bajaPublicaciones(Publicacion* arrayPublicacion,int limite, int idCliente);
+int publicacion_pausar(Publicacion* publicacion,int limite, int idPublicacion);
+int publicacion_reanudar(Publicacion* publicacion,int limite, int idPublicacion);
 
-int publicacion_pausarPublicacion(Publicacion* arrayPublicacion,int limite, int idPublicacion);
-int publicacion_reanudarPublicacion(Publicacion* arrayPublicacion,int limite, int idPublicacion);
 
 int publicacion_ordenarNumericamente(Publicacion* array,int limite, int orden);
 //int publicacion_altaForzada(Publicacion* arrayPublicacion,int limite,int numeroRubro, int idPublicacion, int idCliente, char* textoAviso, int estado);
