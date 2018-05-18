@@ -109,7 +109,6 @@ int informes_mostrarClientes(Cliente* arrayCliente,int limiteCliente, Publicacio
     int j;
     int ultimoCliente;
     int contadorPublicaciones=0;
-    cliente_ordenarNumericamente(arrayCliente,limiteCliente,0);
     if(limiteCliente > 0 && arrayCliente != NULL)
     {
         retorno = 0;
@@ -120,14 +119,15 @@ int informes_mostrarClientes(Cliente* arrayCliente,int limiteCliente, Publicacio
                 ultimoCliente = arrayCliente[i].idCliente;
                 for(j=0;j<limitePublicacion;j++)
                 {
-                    if(!arrayPublicacion[i].isEmpty && arrayPublicacion[i].idCliente==ultimoCliente)
+                    if(!arrayPublicacion[j].isEmpty && arrayPublicacion[j].idCliente==ultimoCliente)
                     {
                         contadorPublicaciones++;
                     }
                 }
-                printf("Nombre Cliente: %s, Apellido cliente: %s, Cuit cliente: %s, cantidad avisos: %d",
+                printf("Nombre Cliente: %s, Apellido cliente: %s, Cuit cliente: %s,\n cantidad avisos: %d",
                         arrayCliente[i].nombreCliente, arrayCliente[i].apellidoCliente, arrayCliente[i].cuit,contadorPublicaciones);
             }
+            contadorPublicaciones=0;
         }
     }
     return retorno;

@@ -15,6 +15,9 @@ int esAlfaNumerico(char *str);
 int esSoloLetras(char *str);
 int esNumericoFlotante(char str[]);
 
+int getStringNumeros2(char mensaje[],char input[]);
+int getValidStringNumerico(char requestMessage[],char errorMessage[], char errorMessageLenght[],char input[], int maxLenght,int attemps);
+
 void getString(char mensaje[],char input[]);
 int getStringLetras(char mensaje[],char input[]);
 int getStringNumeros(char mensaje[],char input[]);

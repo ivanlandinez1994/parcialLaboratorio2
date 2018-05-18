@@ -234,6 +234,45 @@ int getStringNumeros(char mensaje[],char input[])
     }
     return 0;
 }
+
+int getStringNumeros2(char mensaje[],char input[])
+{
+    char aux[256];
+    getString(mensaje,aux);
+    if(esNumerico(aux))
+    {
+        strcpy(input,aux);
+        return 1;
+    }
+    return 0;
+}
+
+int getValidStringNumerico(char requestMessage[],char errorMessage[], char errorMessageLenght[],char input[], int maxLenght,int attemps)
+{
+    int i;
+    int retorno=-1;
+    char buffer[1024];
+
+    for(i=0;i<attemps;i++)
+    {
+        if (!getStringNumeros2(requestMessage,buffer))
+        {
+            printf ("%s",errorMessage);
+            continue;
+        }
+        if(strlen(buffer) >= maxLenght)
+        {
+            printf ("%s",errorMessageLenght);
+            continue;
+
+        }
+        retorno=0;
+        strcpy(input,buffer);
+        break;
+    }
+    return retorno;
+}
+
 /**
  * \brief Solicita un texto alfanumérico al usuario y lo devuelve
  * \param mensaje Es el mensaje a ser mostrado

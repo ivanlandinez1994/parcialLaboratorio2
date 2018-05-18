@@ -77,7 +77,7 @@ int cliente_alta(Cliente* arrayCliente,int limite)
             {
                 if(!getValidString("\nApellido Cliente? ","\nEso no es un apellido","El maximo de caractres es 50",apellidoCliente,50,3))
                 {
-                    if(!getValidAlfaNumerico("\nCuit Cliente? ","\nEso no es un cuit","El maximo de caractres es 50",cuit,50,3))
+                    if(!getValidStringNumerico("\nCUIT? ","\nEl CUIT debe tener solo numeros","El maximo es de 11",cuit,12,3))
                     {
                         retorno = 0;
                         strcpy(arrayCliente[i].nombreCliente,nombreCliente);
