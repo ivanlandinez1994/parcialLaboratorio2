@@ -8,7 +8,7 @@ typedef struct
     int numeroRubro;
     char textoAviso[50];
     int idPublicacion;
-    int estado;//1 - activo  0 - pausado
+    int estado;//1 - activo  0 - pausado - 2 no existe
     int isEmpty;
 }Publicacion;
 int publicacion_init(Publicacion* array,int limite);

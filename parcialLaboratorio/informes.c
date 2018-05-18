@@ -106,22 +106,28 @@ int informes_mostrarClientes(Cliente* arrayCliente,int limiteCliente, Publicacio
 {
     int retorno = -1;
     int i;
+    int j;
     int ultimoCliente;
+    int contadorPublicaciones=0;
     cliente_ordenarNumericamente(arrayCliente,limiteCliente,0);
-    if((limiteCliente > 0 && arrayCliente != NULL)&&(limitePublicacion > 0 && arrayPublicacion != NULL))
+    if(limiteCliente > 0 && arrayCliente != NULL)
     {
         retorno = 0;
         for(i=0;i<limiteCliente;i++)
         {
-            if((!arrayCliente[i].isEmpty && !arrayPublicacion[i].isEmpty)&&(ultimoCliente!=arrayCliente[i].idCliente))
+            if(!arrayCliente[i].isEmpty)
             {
-                ultimoCliente=arrayCliente[i].idCliente;
-                printf("Nombre Cliente: %s, Apellido cliente: %s, Cuit cliente: %s, idCliente: %d, ",
-                       arrayCliente[i].nombreCliente, arrayCliente[i].apellidoCliente, arrayCliente[i].cuit, arrayCliente[i].idCliente);
-                printf("cantidad de de avisos activos: %d\n", informes_cantidadAvisosActivos(arrayPublicacion,arrayPublicacion[i].idCliente,limitePublicacion));
-
+                ultimoCliente = arrayCliente[i].idCliente;
+                for(j=0;j<limitePublicacion;j++)
+                {
+                    if(!arrayPublicacion[i].isEmpty && arrayPublicacion[i].idCliente==ultimoCliente)
+                    {
+                        contadorPublicaciones++;
+                    }
+                }
+                printf("Nombre Cliente: %s, Apellido cliente: %s, Cuit cliente: %s, cantidad avisos: %d",
+                        arrayCliente[i].nombreCliente, arrayCliente[i].apellidoCliente, arrayCliente[i].cuit,contadorPublicaciones);
             }
-
         }
     }
     return retorno;
@@ -140,24 +146,27 @@ int informes_mostrarPublicaciones(Cliente* arrayCliente,int limiteCliente, Publi
 {
     int retorno = -1;
     int i;
+    int j;
     int indiceCuitCliente;
+    char cuitCliente[50];
     if((limiteCliente > 0 && arrayCliente != NULL)&& (limitePublicacion > 0 && arrayPublicacion != NULL))
     {
         retorno = 0;
         for(i=0;i<limitePublicacion;i++)
         {
-            if(!arrayCliente[i].isEmpty && !arrayPublicacion[i].isEmpty)
+            if(!arrayPublicacion[i].isEmpty && arrayPublicacion[i].estado == 1)
             {
-                if(arrayPublicacion[i].estado == 1 )
+                indiceCuitCliente = cliente_buscarPorId(arrayCliente,limiteCliente,arrayCliente[i].idCliente);
+                for(j=0;j<limiteCliente;j++)
                 {
-                    indiceCuitCliente = cliente_buscarPorId(arrayCliente,limiteCliente,arrayCliente[i].idCliente);
-                    printf("id Cliente: %d, numero rubro: %d, texto aviso: %s,\nId publicacion: %d, ",
-                           arrayPublicacion[i].idCliente, arrayPublicacion[i].numeroRubro, arrayPublicacion[i].textoAviso, arrayPublicacion[i].idPublicacion);
-                    printf("cantidad de de avisos activos: %d, Cuit Cliente: %s\n\n", informes_cantidadAvisosActivos(arrayPublicacion,arrayPublicacion[i].idCliente, limitePublicacion), arrayCliente[indiceCuitCliente].cuit);
-
+                    if(!arrayCliente[j].isEmpty && arrayCliente[j].idCliente == indiceCuitCliente)
+                        strcpy(cuitCliente,arrayCliente[j].cuit);
                 }
+            printf("Numero rubro: %d, texto aviso: %s,\nId publicacion: %d, ",
+                arrayPublicacion[i].numeroRubro, arrayPublicacion[i].textoAviso, arrayPublicacion[i].idPublicacion);
+            printf("cantidad de de avisos activos: %d, Cuit Cliente: %s\n\n", informes_cantidadAvisosActivos(arrayPublicacion,
+                arrayPublicacion[i].idCliente, limitePublicacion), cuitCliente);
             }
-
         }
     }
     return retorno;

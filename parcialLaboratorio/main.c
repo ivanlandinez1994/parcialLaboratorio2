@@ -7,20 +7,21 @@
 #include "utn.h"
 #include "informes.h"
 #define SIZECLIENTE 100
-#define SIZEPUBLICACION 1000
+#define SIZEPUBLICACION 200
 
 int main()
 {
     Cliente arrayCliente[SIZECLIENTE];
     Publicacion arrayPublicacion[SIZEPUBLICACION];
+    cliente_init(arrayCliente,SIZECLIENTE);
+    publicacion_init(arrayPublicacion,SIZEPUBLICACION);
 
     int menu;
     int confirmarBajaClientePublicacion;
     int auxiliarIdCliente;
     int auxiliarIdPublicacion;
 
-    cliente_init(arrayCliente,SIZECLIENTE);
-    publicacion_init(arrayPublicacion,SIZEPUBLICACION);
+
 
     /*cliente_altaForzada(arrayCliente,SIZECLIENTE,"Pedro",0,"67312322");
     cliente_altaForzada(arrayCliente,SIZECLIENTE,"Adrian",1,"72384943");
@@ -73,7 +74,7 @@ int main()
                 publicacion_reanudarPublicacion(arrayPublicacion,SIZEPUBLICACION,auxiliarIdPublicacion);
                 break;
             case 7:
-                informes_mostrarClientes(arrayCliente, SIZECLIENTE, arrayPublicacion,SIZEPUBLICACION);
+                informes_mostrarClientes(arrayCliente,SIZECLIENTE,arrayPublicacion,SIZEPUBLICACION);
                 break;
             case 8:
                 informes_mostrarPublicaciones(arrayCliente,SIZECLIENTE,arrayPublicacion,SIZEPUBLICACION);

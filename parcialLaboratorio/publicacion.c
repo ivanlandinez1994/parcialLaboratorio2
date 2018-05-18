@@ -23,10 +23,11 @@ int publicacion_init(Publicacion* arrayPublicacion,int limite)
     int i;
     if(limite > 0 && arrayPublicacion != NULL)
     {
-        retorno = 0;
         for(i=0;i<limite;i++)
         {
-            arrayPublicacion[i].isEmpty=1;
+            retorno = 0;
+            arrayPublicacion[i].isEmpty = 1;
+            arrayPublicacion[i].estado = 2;
         }
     }
     return retorno;

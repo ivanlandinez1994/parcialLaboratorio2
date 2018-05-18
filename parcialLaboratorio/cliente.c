@@ -23,9 +23,9 @@ int cliente_init(Cliente* arrayCliente,int limite)
     int i;
     if(limite > 0 && arrayCliente != NULL)
     {
-        retorno = 0;
         for(i=0;i<limite;i++)
         {
+            retorno = 0;
             arrayCliente[i].isEmpty=1;
         }
     }
